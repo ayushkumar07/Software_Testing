@@ -8,13 +8,15 @@ public class Showroom {
     Car suv ;
     Car sedan ;
     int capacity;
+    private int totalCars;
     public Showroom(int capacity){
         this.capacity = capacity;
         suv = new SUV();
         sedan = new Sedan();
+        totalCars = 0;
     }
     int totalCarsAvailable(){
-        return suv.getCarsAvailable() + sedan.getCarsAvailable();
+        return totalCars;
     }
     boolean canAddCars(int quantity){
         return quantity > 0 && (capacity - (totalCarsAvailable()) >= quantity);
@@ -22,6 +24,7 @@ public class Showroom {
 
     public boolean addSUV(int quantity){
         if(canAddCars(quantity)){
+            totalCars += quantity;
             suv.addCar(quantity);
             return true;
         }
@@ -29,6 +32,7 @@ public class Showroom {
     }
     public boolean addSedan(int quantity){
         if(canAddCars(quantity)){
+            totalCars += quantity;
             sedan.addCar(quantity);
             return true;
         }
@@ -36,9 +40,17 @@ public class Showroom {
     }
 
     public boolean buySUV(int quantity){
-        return suv.buyCar(quantity);
+        if(suv.buyCar(quantity)){
+            totalCars -=quantity;
+            return true;
+        }
+        return false;
     }
     public boolean buySedan(int quantity){
-        return sedan.buyCar(quantity);
+        if(sedan.buyCar(quantity)){
+            totalCars -= quantity;
+            return true;
+        }
+        return false;
     }
 }

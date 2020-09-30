@@ -2,8 +2,7 @@ package showroomMain;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ShowroomTesting {
     @Test
@@ -87,6 +86,8 @@ public class ShowroomTesting {
         Showroom showroom = new Showroom(100);
         showroom.addSUV(50);
         assertFalse(showroom.buySUV(0));
+
+        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
     }
 
     @Test
@@ -94,30 +95,40 @@ public class ShowroomTesting {
         Showroom showroom = new Showroom(100);
         showroom.addSUV(50);
         assertTrue(showroom.buySUV(1));
+
+        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
     }
     @Test
     public void minValidInputBuySUV(){
         Showroom showroom = new Showroom(100);
         showroom.addSUV(50);
         assertTrue(showroom.buySUV(2));
+
+        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
     }
     @Test
     public void maxValidInputBuySUV(){
         Showroom showroom = new Showroom(100);
         showroom.addSUV(50);
         assertTrue(showroom.buySUV(49));
+
+        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
     }
     @Test
     public void maxBoundaryInputBuySUV(){
         Showroom showroom = new Showroom(100);
         showroom.addSUV(50);
         assertTrue(showroom.buySUV(50));
+
+        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
     }
     @Test
     public void maxInvalidInputBuySUV(){
         Showroom showroom = new Showroom(100);
         showroom.addSUV(50);
         assertFalse(showroom.buySUV(51));
+
+        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
     }
 
     @Test
@@ -125,6 +136,8 @@ public class ShowroomTesting {
         Showroom showroom = new Showroom(100);
         showroom.addSedan(50);
         assertFalse(showroom.buySedan(0));
+
+        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
     }
 
     @Test
@@ -132,36 +145,46 @@ public class ShowroomTesting {
         Showroom showroom = new Showroom(100);
         showroom.addSedan(50);
         assertTrue(showroom.buySedan(1));
+
+        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
     }
     @Test
     public void minValidInputBuySedan(){
         Showroom showroom = new Showroom(100);
         showroom.addSedan(50);
         assertTrue(showroom.buySedan(2));
+
+        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
     }
     @Test
     public void maxValidInputBuySedan(){
         Showroom showroom = new Showroom(100);
         showroom.addSedan(50);
         assertTrue(showroom.buySedan(49));
+
+        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
     }
     @Test
     public void maxBoundaryInputBuySedan(){
         Showroom showroom = new Showroom(100);
         showroom.addSedan(50);
         assertTrue(showroom.buySedan(50));
+
+        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
     }
     @Test
     public void maxInvalidInputBuySedan(){
         Showroom showroom = new Showroom(100);
         showroom.addSedan(50);
         assertFalse(showroom.buySedan(51));
+
+        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
     }
     @Test
     public void NominalInvalidInputBuySedan(){
         Showroom showroom = new Showroom(100);
         showroom.addSedan(100);
         assertTrue(showroom.buySedan(51));
+        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
     }
-
 }
