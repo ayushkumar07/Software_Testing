@@ -44,6 +44,13 @@ public class ShowroomTesting {
     }
 
     @Test
+    public void nominalInputAddSUV(){
+        Showroom showroom = new Showroom(100);
+        showroom.addSedan(50);
+        assertTrue(showroom.addSUV(25));
+    }
+
+    @Test
     public void minInvalidInputAddSedan(){
         Showroom showroom = new Showroom(100);
         showroom.addSUV(50);
@@ -79,6 +86,13 @@ public class ShowroomTesting {
         Showroom showroom = new Showroom(100);
         showroom.addSUV(50);
         assertFalse(showroom.addSedan(51));
+    }
+
+    @Test
+    public void nominalInputAddSedan(){
+        Showroom showroom = new Showroom(100);
+        showroom.addSUV(50);
+        assertTrue(showroom.addSedan(25));
     }
 
     @Test
@@ -132,6 +146,15 @@ public class ShowroomTesting {
     }
 
     @Test
+    public void nominalInputBuySUV(){
+        Showroom showroom = new Showroom(100);
+        showroom.addSUV(50);
+        assertTrue(showroom.buySUV(25));
+
+        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
+    }
+
+    @Test
     public void minInvalidInputBuySedan(){
         Showroom showroom = new Showroom(100);
         showroom.addSedan(50);
@@ -180,6 +203,16 @@ public class ShowroomTesting {
 
         assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
     }
+
+    @Test
+    public void nominalInputBuySedan(){
+        Showroom showroom = new Showroom(100);
+        showroom.addSedan(50);
+        assertTrue(showroom.buySedan(25));
+
+        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
+    }
+
     @Test
     public void NominalInvalidInputBuySedan(){
         Showroom showroom = new Showroom(100);
