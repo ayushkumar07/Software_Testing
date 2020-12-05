@@ -5,219 +5,67 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ShowroomTesting {
+
+    //Todo INVALID WEIGHTS
+    @Test(expected = Exception.class)
+    public void Test1() throws Exception {
+        Showroom showroom = new Showroom();
+        showroom.costDocument(false, 111114, 0);
+    }
+    @Test(expected = Exception.class)
+    public void Test2() throws Exception {
+        Showroom showroom = new Showroom();
+        showroom.costOtherParcel(false, 111114, 5001);
+    }
+    @Test(expected = Exception.class)
+    public void Test3() throws Exception {
+        Showroom showroom = new Showroom();
+        showroom.costDocument(false, 111114, 302);
+    }
+
+    //todo INVALID ZIP
+    @Test(expected = Exception.class)
+    public void Test4() throws Exception {
+        Showroom showroom = new Showroom();
+        showroom.costDocument(false, 111110, 50);
+    }
+
+    @Test(expected = Exception.class)
+    public void Test5() throws Exception {
+        Showroom showroom = new Showroom();
+        showroom.costDocument(false, 10000000, 50);
+    }
+
+    //todo VALID
     @Test
-    public void minInvalidInputAddSUV(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSedan(50);
-        assertFalse(showroom.addSUV(0));
+    public void Test6() throws Exception {
+        Showroom showroom = new Showroom();
+        assertEquals(100,showroom.costDocument(false, 111111, 50));
+    }
+    @Test
+    public void Test7() throws Exception {
+        Showroom showroom = new Showroom();
+        assertEquals(200,showroom.costDocument(true, 111111, 50));
+    }
+    @Test
+    public void Test8() throws Exception {
+        Showroom showroom = new Showroom();
+        assertEquals(200,showroom.costDocument(false, 111111, 150));
+    }
+    @Test
+    public void Test9() throws Exception {
+        Showroom showroom = new Showroom();
+        assertEquals(400,showroom.costDocument(true, 111111, 150));
     }
 
     @Test
-    public void minBoundaryInputAddSUV(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSedan(50);
-        assertTrue(showroom.addSUV(1));
+    public void Test10() throws Exception {
+        Showroom showroom = new Showroom();
+        assertEquals(1500,showroom.costDocument(false, 2347899, 50));
     }
     @Test
-    public void minValidInputAddSUV(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSedan(50);
-        assertTrue(showroom.addSUV(2));
-    }
-    @Test
-    public void maxValidInputAddSUV(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSedan(50);
-        assertTrue(showroom.addSUV(49));
-    }
-    @Test
-    public void maxBoundaryInputAddSUV(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSedan(50);
-        assertTrue(showroom.addSUV(50));
-    }
-    @Test
-    public void maxInvalidInputAddSUV(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSedan(50);
-        assertFalse(showroom.addSUV(51));
-    }
-
-    @Test
-    public void nominalInputAddSUV(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSedan(50);
-        assertTrue(showroom.addSUV(25));
-    }
-
-    @Test
-    public void minInvalidInputAddSedan(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSUV(50);
-        assertFalse(showroom.addSedan(0));
-    }
-
-    @Test
-    public void minBoundaryInputAddSedan(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSUV(50);
-        assertTrue(showroom.addSedan(1));
-    }
-    @Test
-    public void minValidInputAddSedan(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSUV(50);
-        assertTrue(showroom.addSedan(2));
-    }
-    @Test
-    public void maxValidInputAddSedan(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSUV(50);
-        assertTrue(showroom.addSedan(49));
-    }
-    @Test
-    public void maxBoundaryInputAddSedan(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSUV(50);
-        assertTrue(showroom.addSedan(50));
-    }
-    @Test
-    public void maxInvalidInputAddSedan(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSUV(50);
-        assertFalse(showroom.addSedan(51));
-    }
-
-    @Test
-    public void nominalInputAddSedan(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSUV(50);
-        assertTrue(showroom.addSedan(25));
-    }
-
-    @Test
-    public void minInvalidInputBuySUV(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSUV(50);
-        assertFalse(showroom.buySUV(0));
-
-        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
-    }
-
-    @Test
-    public void minBoundaryInputBuySUV(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSUV(50);
-        assertTrue(showroom.buySUV(1));
-
-        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
-    }
-    @Test
-    public void minValidInputBuySUV(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSUV(50);
-        assertTrue(showroom.buySUV(2));
-
-        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
-    }
-    @Test
-    public void maxValidInputBuySUV(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSUV(50);
-        assertTrue(showroom.buySUV(49));
-
-        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
-    }
-    @Test
-    public void maxBoundaryInputBuySUV(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSUV(50);
-        assertTrue(showroom.buySUV(50));
-
-        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
-    }
-    @Test
-    public void maxInvalidInputBuySUV(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSUV(50);
-        assertFalse(showroom.buySUV(51));
-
-        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
-    }
-
-    @Test
-    public void nominalInputBuySUV(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSUV(50);
-        assertTrue(showroom.buySUV(25));
-
-        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
-    }
-
-    @Test
-    public void minInvalidInputBuySedan(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSedan(50);
-        assertFalse(showroom.buySedan(0));
-
-        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
-    }
-
-    @Test
-    public void minBoundaryInputBuySedan(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSedan(50);
-        assertTrue(showroom.buySedan(1));
-
-        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
-    }
-    @Test
-    public void minValidInputBuySedan(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSedan(50);
-        assertTrue(showroom.buySedan(2));
-
-        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
-    }
-    @Test
-    public void maxValidInputBuySedan(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSedan(50);
-        assertTrue(showroom.buySedan(49));
-
-        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
-    }
-    @Test
-    public void maxBoundaryInputBuySedan(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSedan(50);
-        assertTrue(showroom.buySedan(50));
-
-        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
-    }
-    @Test
-    public void maxInvalidInputBuySedan(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSedan(50);
-        assertFalse(showroom.buySedan(51));
-
-        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
-    }
-
-    @Test
-    public void nominalInputBuySedan(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSedan(50);
-        assertTrue(showroom.buySedan(25));
-
-        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
-    }
-
-    @Test
-    public void NominalInvalidInputBuySedan(){
-        Showroom showroom = new Showroom(100);
-        showroom.addSedan(100);
-        assertTrue(showroom.buySedan(51));
-        assertEquals(showroom.totalCarsAvailable(), showroom.sedan.getCarsAvailable() + showroom.suv.getCarsAvailable());
+    public void Test11() throws Exception {
+        Showroom showroom = new Showroom();
+        assertEquals(3000,showroom.costDocument(true, 2347899, 50));
     }
 }

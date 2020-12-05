@@ -1,56 +1,15 @@
 package showroomMain;
-
-import carInfo.Car;
-import carInfo.SUV;
-import carInfo.Sedan;
+import Parcel.Document;
+import Parcel.OtherParcel;
 
 public class Showroom {
-    Car suv ;
-    Car sedan ;
-    int capacity;
-    private int totalCars;
-    public Showroom(int capacity){
-        this.capacity = capacity;
-        suv = new SUV();
-        sedan = new Sedan();
-        totalCars = 0;
-    }
-    int totalCarsAvailable(){
-        return totalCars;
-    }
-    boolean canAddCars(int quantity){
-        return quantity > 0 && (capacity - (totalCarsAvailable()) >= quantity);
-    }
 
-    public boolean addSUV(int quantity){
-        if(canAddCars(quantity)){
-            totalCars += quantity;
-            suv.addCar(quantity);
-            return true;
-        }
-        else return false;
+    public int costDocument(boolean courierType, int ZIP, int weight) throws Exception {
+        Document document = new Document(courierType, ZIP, weight);
+        return document.giveCost();
     }
-    public boolean addSedan(int quantity){
-        if(canAddCars(quantity)){
-            totalCars += quantity;
-            sedan.addCar(quantity);
-            return true;
-        }
-        else return false;
-    }
-
-    public boolean buySUV(int quantity){
-        if(suv.buyCar(quantity)){
-            totalCars -=quantity;
-            return true;
-        }
-        return false;
-    }
-    public boolean buySedan(int quantity){
-        if(sedan.buyCar(quantity)){
-            totalCars -= quantity;
-            return true;
-        }
-        return false;
+    public int costOtherParcel(boolean courierType, int ZIP, int weight) throws Exception {
+        OtherParcel otherParcel= new OtherParcel(courierType, ZIP, weight);
+        return otherParcel.giveCost();
     }
 }
